@@ -15,6 +15,7 @@ setuptools.setup(
     url='https://bitbucket.org/platoai/platoai-python',
     # packages=[package_dir],
     # include_package_data=True,
+    py_modules=['platoai'],
     install_requires=[
         'platoai_protos==0.1.2',
         'grpcio'
