@@ -43,6 +43,7 @@ with open('test.wav', 'rb') as f:
 
 Add a progress bar (requires [`tqdm`](https://github.com/tqdm/tqdm)):
 ```python
+import os
 import platoai
 from tqdm import tqdm
 
