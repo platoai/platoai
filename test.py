@@ -33,5 +33,5 @@ with open(file_name, 'rb') as f:
         print(platoai.push(
             f,
             metadata,
-            # channel=grpc.insecure_channel('0.0.0.0:9001'),
+            channel=grpc.insecure_channel('0.0.0.0:9001'),
             callbacks=[pbar.update]))
