@@ -1,10 +1,6 @@
-from __future__ import print_function
-import os
-import datetime
 import time
 import grpc
 from platoai_protos import api_pb2_grpc, api_pb2, phone_call_pb2
-from tqdm import tqdm
 
 
 class PushRequestIter(object):
@@ -42,27 +38,3 @@ def push(audio, metadata, host='api.platoai.com', port=9000, callback=None):
 
     stub = api_pb2_grpc.ScoringStub(channel)
     stub.Push(PushRequestIter(audio, metadata, callback=callback))
-
-
-metadata = {
-    'id': 'callId',
-    'timestamp': datetime.datetime.now(),
-    'callCenter': {
-        'id': 'callCenterId'
-    },
-    'agents': [{
-        'id': 'agentId',
-        'name': 'Agent Name',
-        'phoneNumber': 1234567890
-    }],
-    'customers': [{
-        'phoneNumber': 1234567890
-    }],
-    'direction': 'OUTGOING'
-}
-
-file_name = 'test.wav'
-with open(file_name, 'rb') as f:
-    pbar = tqdm(total=os.path.getsize(file_name))
-    push(f, metadata, port=9001, callback=pbar.update)
-    pbar.close()
