@@ -8,7 +8,7 @@ Python implementation of the [Plato AI API](https://github.com/platoai/protos).
 ## installation
 
 ```
-pip install git+git://github.com/platoai/platoai-python.git
+pip install git+git://github.com/platoai/platoai-python.git --process-dependency-links
 
 ```
 
