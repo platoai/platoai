@@ -32,34 +32,6 @@ class PushRequestIter(object):
             raise StopIteration
 
 
-# class Uploader(object):
-#
-#     def __init__(self, metadata, progress_bar=None):
-#         t = metadata['timestamp']
-#         t = time.mktime(t.timetuple()) * 1e3 + t.microsecond / 1e3
-#         metadata['timestamp'] = long(t)
-#         self.metadata = metadata
-#
-#         channel = grpc.secure_channel('api.platoai.com:9000',
-#                                       grpc.ssl_channel_credentials())
-#         # channel = grpc.insecure_channel('0.0.0.0:9001')
-#         self.stub = api_pb2_grpc.ScoringStub(channel)
-#
-#         self.progress_bar = progress_bar
-#
-#     def write(self, audio):
-#         self.stub.Push(
-#             PushRequestIter(
-#                 audio, self.metadata, progress_bar=self.progress_bar))
-#
-#     def __enter__(self):
-#         return self
-#
-#     def __exit__(self, exc_type, exc_value, traceback):
-#         if self.progress_bar:
-#             self.progress_bar.close()
-
-
 def push(audio, metadata, host='api.platoai.com', port=9000, callback=None):
     t = metadata['timestamp']
     t = time.mktime(t.timetuple()) * 1e3 + t.microsecond / 1e3
