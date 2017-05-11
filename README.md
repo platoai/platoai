@@ -52,5 +52,5 @@ from tqdm import tqdm
 file_name = 'test.wav'
 with open(file_name, 'rb') as f:
     with tqdm(total=os.path.getsize(file_name)) as pbar:
-        print(platoai.push(f, metadata, callback=pbar.update))
+        print(platoai.push(f, metadata, callbacks=[pbar.update]))
 ```
