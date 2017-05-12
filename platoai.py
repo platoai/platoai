@@ -8,7 +8,7 @@ class PushRequestIter(object):
     protocol to support streaming in the API.
     """
 
-    def __init__(self, audio, metadata, chunk_size=1024, callbacks=None):
+    def __init__(self, audio, metadata, chunk_size=1024, callbacks=[]):
         self.audio = audio
         self.metadata = metadata
         self.chunk_size = chunk_size
@@ -32,7 +32,7 @@ class PushRequestIter(object):
             raise StopIteration
 
 
-def push(audio, metadata, channel=None, callbacks=None):
+def push(audio, metadata, channel=None, callbacks=[]):
     """Enqueue a call to be processed by Plato AI.
 
     Args:
