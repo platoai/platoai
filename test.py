@@ -27,11 +27,16 @@ metadata = {
         'OUTGOING'
 }
 
+# channel = grpc.secure_channel('api.platoai.com:9000',
+#                               grpc.ssl_channel_credentials())
+# channel = grpc.insecure_channel('0.0.0.0:9001')
+channel = None
+
 file_name = 'test.wav'
 with open(file_name, 'rb') as f:
     with tqdm(total=os.path.getsize(file_name)) as pbar:
         print(platoai.push(
             f,
             metadata,
-            channel=grpc.insecure_channel('0.0.0.0:9001'),
+            channel=channel,
             callbacks=[pbar.update]))
