@@ -5,32 +5,26 @@ import grpc
 import platoai
 from tqdm import tqdm
 
+# TODO: improve testing...
+
 metadata = {
-    'id':
-        'callId',
-    'timestamp':
-        datetime.datetime.now(),
+    'id': 'test',
+    'timestamp': datetime.datetime.now(),
     'callCenter': {
-        'id': 'callCenterId'
+        'id': 'test'
     },
     'agents': [{
-        'id': 'agentId',
-        'name': 'Agent Name',
+        'id': 'test',
+        'name': 'test',
         'phoneNumber': 1234567890
     }],
     'customers': [{
-        'id': 'customerId',
-        'name': 'Customer Name',
+        'id': 'test',
+        'name': 'test',
         'phoneNumber': 9876543210
     }],
-    'direction':
-        'OUTGOING'
+    'direction': 'OUTGOING'
 }
-
-# channel = grpc.secure_channel('api.platoai.com:9000',
-#                               grpc.ssl_channel_credentials())
-# channel = grpc.insecure_channel('0.0.0.0:9001')
-channel = None
 
 file_name = 'test.wav'
 with open(file_name, 'rb') as f:
@@ -38,5 +32,5 @@ with open(file_name, 'rb') as f:
         print(platoai.push(
             f,
             metadata,
-            channel=channel,
+            channel=grpc.insecure_channel('0.0.0.0:9001'),
             callbacks=[pbar.update]))
