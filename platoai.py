@@ -32,7 +32,12 @@ class PushRequestIter(object):
             raise StopIteration
 
 
-def push(audio, metadata, channel=None, callbacks=[]):
+def push(audio,
+         metadata,
+         host='api.platoai.com',
+         port=9000,
+         channel=None,
+         callbacks=[]):
     """Enqueue a call to be processed by Plato AI.
 
     Args:
@@ -52,7 +57,7 @@ def push(audio, metadata, channel=None, callbacks=[]):
     metadata['timestamp'] = long(dt)
 
     if not channel:
-        channel = grpc.secure_channel('api.platoai.com:9000',
+        channel = grpc.secure_channel('{}:{}'.format(host, port),
                                       grpc.ssl_channel_credentials())
 
     stub = api_pb2_grpc.ScoringStub(channel)
