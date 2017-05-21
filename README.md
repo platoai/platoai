@@ -3,12 +3,12 @@
 Python implementation of the [Plato AI API](https://github.com/platoai/protos).
 
 ## requirements
-[python](https://www.python.org/downloads/) v2.7+ (for the moment)
+[python](https://www.python.org/downloads/) v2.7 (for the moment)
 
 ## installation
 
 ```
-pip install git+https://github.com/platoai/platoai-python.git --process-dependency-links
+pip install platoai
 
 ```
 
