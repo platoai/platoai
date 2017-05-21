@@ -13,15 +13,10 @@ setuptools.setup(
     author='William Myers',
     author_email='will@platoai.com',
     url='https://bitbucket.org/platoai/platoai-python',
-    # packages=[package_dir],
-    # include_package_data=True,
     py_modules=['platoai'],
     install_requires=[
-        'platoai_protos==0.1.2',
+        'platoai_protos==0.1.7',
         'grpcio'
-    ],
-    dependency_links=[
-        'https://github.com/platoai/protos/tarball/master#egg=platoai_protos-0.1.2'
     ],
     license='UNLICENSED',
     keywords='grpc plato platoai ai',
