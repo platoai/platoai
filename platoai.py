@@ -10,7 +10,12 @@ class PushRequestIter(object):
 
     def __init__(self, audio, metadata, chunk_size=1024, callbacks=[]):
         self.audio = audio
+
         self.metadata = metadata
+        dt = metadata['timestamp']
+        dt = time.mktime(dt.timetuple()) * 1e3 + dt.microsecond / 1e3
+        metadata['timestamp'] = long(dt)
+
         self.chunk_size = chunk_size
         self.callbacks = callbacks
 
@@ -51,10 +56,6 @@ def push(audio,
         metadata (:obj:`dictionary`): The metadata for the uploaded call or
             error details.
     """
-
-    dt = metadata['timestamp']
-    dt = time.mktime(dt.timetuple()) * 1e3 + dt.microsecond / 1e3
-    metadata['timestamp'] = long(dt)
 
     if not channel:
         channel = grpc.secure_channel('{}:{}'.format(host, port),
