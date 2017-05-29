@@ -24,7 +24,7 @@ class PushRequestIter(object):
 
     def next(self):
         chunk = self.audio.read(self.chunk_size)
-        if chunk != '':
+        if chunk:
             phone_call = phone_call_pb2.PhoneCall(
                 audio=chunk,
                 metadata=phone_call_pb2.PhoneCallMetadata(**self.metadata))
