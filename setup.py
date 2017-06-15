@@ -46,12 +46,12 @@ with open("README.md") as readme_file:
 
 setuptools.setup(
     name='platoai',
-    version='0.1.2',
+    version='0.1.3',
     description='python implementation of the Plato AI API',
     long_description=readme,
     author='William Myers',
     author_email='will@platoai.com',
-    url='https://bitbucket.org/platoai/platoai-python',
+    url='https://github.com/platoai/platoai-python',
     py_modules=['platoai'],
     install_requires=['platoai_protos==0.1.7', 'grpcio'],
     cmdclass={
