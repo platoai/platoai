@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     metadata = {
         'id':
-            'test-{}'.format(
+            'test_call_id_{}'.format(
                 long(
                     time.mktime(now.timetuple()) * 1e3 + now.microsecond / 1e3)
             ),
@@ -77,19 +77,19 @@ if __name__ == '__main__':
             'id': '-KjyJwwMAn32WSsaDgbF'
         },
         'agents': [{
-            'id': 'test',
-            'name': 'test',
+            'id': 'test_agent_id',
+            'name': 'test_agent_name',
             'phoneNumber': 1234567890
         }],
         'customers': [{
-            'id': 'test',
-            'name': 'test',
+            'id': 'test_customer_id',
+            'name': 'test_customer_name',
             'phoneNumber': 9876543210
         }],
         'direction':
             'OUTGOING'
     }
 
-    # test_local(metadata)
-    test_remote_simple(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
+    test_local(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
+    # test_remote_simple(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
     # test_remote_complex(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
