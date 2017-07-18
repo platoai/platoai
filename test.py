@@ -15,11 +15,11 @@ def test_local(metadata, file_name='test.wav', channel=None):
         with tqdm(total=os.path.getsize(file_name)) as pbar:
             try:
                 pbar.write(
-                    platoai.push(
+                    str(platoai.push(
                         audio=f,
                         metadata=metadata,
                         callbacks=[pbar.update],
-                        channel=channel))
+                        channel=channel)))
             except grpc.RpcError as e:
                 pbar.write(e)
 
@@ -90,6 +90,7 @@ if __name__ == '__main__':
             'OUTGOING'
     }
 
-    test_local(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
+    test_local(metadata)
+    # test_local(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
     # test_remote_simple(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
     # test_remote_complex(metadata, channel=grpc.insecure_channel('0.0.0.0:9001'))
