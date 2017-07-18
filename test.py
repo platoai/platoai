@@ -15,11 +15,12 @@ def test_local(metadata, file_name='test.wav', channel=None):
         with tqdm(total=os.path.getsize(file_name)) as pbar:
             try:
                 pbar.write(
-                    str(platoai.push(
-                        audio=f,
-                        metadata=metadata,
-                        callbacks=[pbar.update],
-                        channel=channel)))
+                    str(
+                        platoai.push(
+                            audio=f,
+                            metadata=metadata,
+                            callbacks=[pbar.update],
+                            channel=channel)))
             except grpc.RpcError as e:
                 pbar.write(e)
 
@@ -32,11 +33,12 @@ def test_remote_simple(metadata,
     with tqdm(total=int(r.headers['content-length'])) as pbar:
         try:
             pbar.write(
-                str(platoai.push(
-                    audio=download_request.raw,
-                    metadata=metadata,
-                    callbacks=[pbar.update],
-                    channel=channel)))
+                str(
+                    platoai.push(
+                        audio=download_request.raw,
+                        metadata=metadata,
+                        callbacks=[pbar.update],
+                        channel=channel)))
         except grpc.RpcError as e:
             pbar.write(e)
 
