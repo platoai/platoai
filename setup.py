@@ -57,11 +57,12 @@ setuptools.setup(
     cmdclass={
         'clean': CustomCleanCommand,
     },
-    license='UNLICENSED',
-    keywords='grpc plato platoai ai',
+    license='Apache-2',
+    keywords='plato platoai ai requests',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7'
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: Apache Software License',
     ])
