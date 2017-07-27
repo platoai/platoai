@@ -1,8 +1,19 @@
 import time
-import io
 from io import BytesIO
-import grpc
-from platoai_protos import api_pb2_grpc, api_pb2, phone_call_pb2
+import datetime
+import json
+import requests
+
+DEFAULT_URL = 'https://api.platoai.com:3000/enqueue'
+
+
+def _serialize(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime.datetime, datetime.date)):
+        serial = obj.isoformat()
+        return serial
+    raise TypeError("Type {} not serializable".format(type(obj)))
 
 
 def _timestamp(dt):
@@ -16,52 +27,21 @@ class PushRequest(object):
     protocol to support streaming in the API.
     """
 
-    def __init__(self,
-                 metadata,
-                 fileobj=None,
-                 host='api.platoai.com',
-                 port=9000,
-                 channel=None,
-                 chunk_size=1024,
-                 callbacks=[]):
+    def __init__(self, metadata, fileobj=None, url=DEFAULT_URL):
         self.metadata = metadata
-        metadata['timestamp'] = long(_timestamp(metadata['timestamp']))
+        metadata['timestamp'] = _timestamp(metadata['timestamp'])
+
+        self.url = url
 
         if not fileobj:
             fileobj = BytesIO()
         self.buffer = fileobj
 
-        if not channel:
-            channel = grpc.secure_channel('{}:{}'.format(host, port),
-                                          grpc.ssl_channel_credentials())
-        self.stub = api_pb2_grpc.ScoringStub(channel)
-
-        self.chunk_size = chunk_size
-        self.callbacks = callbacks
-
     def __enter__(self):
         return self
 
-    def __iter__(self):
-        return iter(self)
-
     def write(self, chunk):
         return self.buffer.write(chunk)
-
-    def next(self):
-        chunk = self.buffer.read(self.chunk_size)
-
-        if not chunk:
-            raise StopIteration
-
-        phone_call = phone_call_pb2.PhoneCall(
-            audio=chunk,
-            metadata=phone_call_pb2.PhoneCallMetadata(**self.metadata))
-
-        for fn in self.callbacks:
-            fn(self.chunk_size)
-
-        return api_pb2.PushRequest(phoneCall=phone_call)
 
     def push(self):
         """Enqueue a call to be processed by Plato AI.
@@ -70,12 +50,13 @@ class PushRequest(object):
             metadata (:obj:`dictionary`): The metadata for the uploaded call or
                 error details.
         """
-        try:
-            self.buffer.seek(0)
-        except io.UnsupportedOperation:
-            pass
-        # TODO: handle errors?
-        return self.stub.Push(self)
+        payload = json.dumps(self.metadata, default=_serialize)
+        files = {
+            'metadata': (None, payload, 'application/json'),
+            'file': (self.metadata['id'], self.buffer,
+                     'application/octet-stream')
+        }
+        return requests.post(self.url, files=files).content
 
     def close(self):
         self.buffer.close()
@@ -84,30 +65,16 @@ class PushRequest(object):
         self.close()
 
 
-def push(audio,
-         metadata,
-         host='api.platoai.com',
-         port=9000,
-         channel=None,
-         callbacks=[]):
+def push(metadata, fileobj, url=DEFAULT_URL):
     """Enqueue a call to be processed by Plato AI.
 
     Args:
         audio (:obj:`file-like object`): The raw audio bytes of the call.
         metadata (:obj:`dictionary`): The metadata for the call.
-        channel (:obj:`grpc.channel`, optional): The gRPC channel.
-        callbacks (list): A list of 1-arity functions, called with the chunk
-            size after each chunk of audio is streamed to the API server.
 
     Returns:
         metadata (:obj:`dictionary`): The metadata for the uploaded call or
             error details.
     """
-    with PushRequest(
-            metadata,
-            fileobj=audio,
-            host=host,
-            port=port,
-            channel=channel,
-            callbacks=callbacks) as push_request:
+    with PushRequest(metadata, fileobj, url) as push_request:
         return push_request.push()
