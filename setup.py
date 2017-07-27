@@ -33,7 +33,10 @@ class CustomCleanCommand(setuptools.Command):
                     print('removing {}...'.format(path))
                 fn(path)
 
-        for d in ['./dist/', './build/', './{}.egg-info/'.format(package_dir)]:
+        for d in [
+                './dist/', './build/', './__pycache__/',
+                './{}.egg-info/'.format(package_dir)
+        ]:
             if os.path.isdir(d):
                 respect_dry_run(d, shutil.rmtree)
 
