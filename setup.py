@@ -53,7 +53,7 @@ setuptools.setup(
     author_email='will@platoai.com',
     url='https://github.com/platoai/platoai-python',
     py_modules=['platoai'],
-    install_requires=['platoai_protos==0.1.7', 'grpcio'],
+    install_requires=['requests'],
     cmdclass={
         'clean': CustomCleanCommand,
     },
