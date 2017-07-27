@@ -1,15 +1,11 @@
-# platoai-python
+# platoai
 
-Python implementation of the [Plato AI API](https://github.com/platoai/protos).
-
-## requirements
-[python](https://www.python.org/downloads/) v2.7 (for the moment)
+> Python implementation of the [Plato AI](https://platoai.com/) [API](http://api.platoai.com:3001/graphiql).
 
 ## installation
 
 ```
 pip install platoai
-
 ```
 
 ## usage
@@ -22,8 +18,8 @@ import platoai
 metadata = {
     'id': 'callId',
     'timestamp': datetime.datetime.now(),
-    'callCenter': {
-        'id': 'callCenterId'
+    'company': {
+        'id': 'companyId'
     },
     'agents': [{
         'id': 'agentId',
@@ -39,18 +35,5 @@ metadata = {
 }
 
 with open('test.wav', 'rb') as f:
-    print(platoai.push(f, metadata))
-```
-
-Add a progress bar (requires [`tqdm`](https://github.com/tqdm/tqdm)):
-```python
-from __future__ import print_function
-import os
-import platoai
-from tqdm import tqdm
-
-file_name = 'test.wav'
-with open(file_name, 'rb') as f:
-    with tqdm(total=os.path.getsize(file_name)) as pbar:
-        print(platoai.push(f, metadata, callbacks=[pbar.update]))
+    print(platoai.push(metadata, f))
 ```
