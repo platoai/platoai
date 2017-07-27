@@ -3,6 +3,7 @@ import os
 import datetime
 import time
 import pprint
+import json
 import platoai
 
 if __name__ == '__main__':
@@ -33,4 +34,4 @@ if __name__ == '__main__':
 
     url = os.getenv('PLATOAI_API_URL', 'http://localhost:3001/enqueue')
     with open('test.wav', 'rb') as f:
-        pprint.pprint(platoai.push(metadata, fileobj=f, url=url))
+        pprint.pprint(json.loads(platoai.push(metadata, fileobj=f, url=url)))
