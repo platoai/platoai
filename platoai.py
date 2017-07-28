@@ -21,7 +21,7 @@ def _timestamp(dt):
 
 
 # TODO: ensure this supports streaming w/out reading entire file into RAM first
-# TODO: why does inheriting from BytesIO not work?
+# TODO: use https://github.com/Julian/jsonschema to validate JSON schema
 class PushRequest(object):
     """Wrapper class for api_pb2.PushRequest that conforms to the iterator
     protocol to support streaming in the API.
