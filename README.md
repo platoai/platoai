@@ -16,18 +16,18 @@ import datetime
 import platoai
 
 metadata = {
-    'id': 'callId',
+    'identifier': 'callId',
     'timestamp': datetime.datetime.now(),
     'company': {
-        'id': 'companyId'
+        'identifier': 'companyId'
     },
     'agents': [{
-        'id': 'agentId',
+        'identifier': 'agentId',
         'name': 'Agent Name',
         'phoneNumber': 1234567890
     }],
     'customers': [{
-        'id': 'customerId',
+        'identifier': 'customerId',
         'name': 'Customer Name',
         'phoneNumber': 9876543210
     }],
