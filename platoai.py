@@ -53,7 +53,7 @@ class PushRequest(object):
         payload = json.dumps(self.metadata, default=_serialize)
         files = {
             'metadata': (None, payload, 'application/json'),
-            'file': (self.metadata['id'], self.buffer,
+            'file': (self.metadata.get('identifier'), self.buffer,
                      'application/octet-stream')
         }
         return requests.post(self.url, files=files).content
