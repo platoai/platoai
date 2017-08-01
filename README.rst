@@ -4,7 +4,6 @@ platoai
 .. image:: https://readthedocs.org/projects/platoai/badge/?version=latest
    :target: http://platoai.readthedocs.io/en/latest/?badge=latest
 |
-|
 
     Python implementation of the `Plato AI`_ `API`_.
 
