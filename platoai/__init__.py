@@ -49,7 +49,7 @@ class Client(object):
                     'identifier': 'callId',
                     'timestamp': datetime.datetime.now(),
                     'company': {
-                        'identifier': 'companyId'
+                        'id': 'companyId'
                     },
                     'agents': [{
                         'identifier': 'agentId',
@@ -93,7 +93,7 @@ class Client(object):
                     'identifier': 'callId',
                     'timestamp': datetime.datetime.now(),
                     'company': {
-                        'identifier': 'companyId'
+                        'id': 'companyId'
                     },
                     'agents': [{
                         'identifier': 'agentId',
