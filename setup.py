@@ -10,6 +10,7 @@ package_dir = 'platoai'
 
 class CustomCleanCommand(setuptools.Command):
     description = 'remove build files'
+    user_options = []
 
     def initialize_options(self):
         """Set default values for options."""
