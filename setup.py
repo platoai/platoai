@@ -3,9 +3,8 @@ from __future__ import print_function
 import os
 import shutil
 import glob
-import setuptools
-# from subprocess import check_output
 import subprocess
+import setuptools
 
 package_dir = 'platoai'
 
