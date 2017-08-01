@@ -4,6 +4,8 @@ import os
 import shutil
 import glob
 import setuptools
+# from subprocess import check_output
+import subprocess
 
 package_dir = 'platoai'
 
@@ -42,6 +44,25 @@ class CustomCleanCommand(setuptools.Command):
             respect_dry_run(f, os.remove)
 
 
+class CustomDocsCommand(setuptools.Command):
+    description = 'build documentation'
+    user_options = []
+
+    def initialize_options(self):
+        """Set default values for options."""
+        pass
+
+    def finalize_options(self):
+        """Post-process options."""
+        pass
+
+    def run(self):
+        """Run build docs."""
+        shutil.rmtree('./docs/_build')
+        subprocess.check_output(['make', '-C', 'docs', 'html'])
+        subprocess.check_output(['open', './docs/_build/html/index.html'])
+
+
 with open("README.rst") as readme_file:
     readme = readme_file.read()
 
@@ -54,10 +75,15 @@ setuptools.setup(
     author_email='will@platoai.com',
     url='https://github.com/platoai/platoai',
     install_requires=['requests'],
+    extras_require={
+        'docs': ['sphinx'],
+        'dev': ['wheel', 'twine']
+    },
     python_requires='>=2.7',
     packages=setuptools.find_packages(exclude=['docs', 'tests*']),
     cmdclass={
         'clean': CustomCleanCommand,
+        'docs': CustomDocsCommand,
     },
     license='Apache-2',
     keywords='plato platoai ai requests',

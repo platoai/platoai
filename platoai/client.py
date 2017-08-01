@@ -4,7 +4,7 @@ import datetime
 import json
 import requests
 
-DEFAULT_URL = 'https://api.platoai.com:3000/enqueue'
+DEFAULT_URL = 'https://api.platoai.com:9000/enqueue'
 
 
 def _serialize(obj):
@@ -23,11 +23,17 @@ def _timestamp(dt):
 # TODO: ensure this supports streaming w/out reading entire file into RAM first
 # TODO: use https://github.com/Julian/jsonschema to validate JSON schema
 class PushRequest(object):
-    """Wrapper class for api_pb2.PushRequest that conforms to the iterator
-    protocol to support streaming in the API.
+    """A file-like object used to enqueue a call audio file to be processed by
+    Plato AI.
+
+    Args:
+        metadata (:obj:`dictionary`): The metadata for the call.
+        fileobj (:obj:`file-like object`): The raw audio bytes of the call.
+        url (str, optional): The URL for the API.
     """
 
     def __init__(self, metadata, fileobj=None, url=DEFAULT_URL):
+
         self.metadata = metadata
         metadata['timestamp'] = _timestamp(metadata['timestamp'])
 
@@ -47,8 +53,7 @@ class PushRequest(object):
         """Enqueue a call to be processed by Plato AI.
 
         Returns:
-            metadata (:obj:`dictionary`): The metadata for the uploaded call or
-                error details.
+            metadata (:obj:`dictionary`): The metadata for the uploaded call.
         """
         payload = json.dumps(self.metadata, default=_serialize)
         files = {
@@ -69,12 +74,39 @@ def push(metadata, fileobj, url=DEFAULT_URL):
     """Enqueue a call to be processed by Plato AI.
 
     Args:
-        audio (:obj:`file-like object`): The raw audio bytes of the call.
         metadata (:obj:`dictionary`): The metadata for the call.
-
+        fileobj (:obj:`file-like object`): The raw audio bytes of the call.
+        url (str, optional): The URL for the API.
+        
     Returns:
-        metadata (:obj:`dictionary`): The metadata for the uploaded call or
-            error details.
+        metadata (:obj:`dictionary`): The metadata for the uploaded call.
+    Example:
+        .. code:: python
+
+            import datetime
+            import platoai
+
+            metadata = {
+                'identifier': 'callId',
+                'timestamp': datetime.datetime.now(),
+                'company': {
+                    'identifier': 'companyId'
+                },
+                'agents': [{
+                    'identifier': 'agentId',
+                    'name': 'Agent Name',
+                    'phoneNumber': 1234567890
+                }],
+                'customers': [{
+                    'identifier': 'customerId',
+                    'name': 'Customer Name',
+                    'phoneNumber': 9876543210
+                }],
+                'direction': 'OUTGOING'
+            }
+
+            with open('test.wav', 'rb') as f:
+                platoai.push(metadata, f)
     """
     with PushRequest(metadata, fileobj, url) as push_request:
         return push_request.push()
