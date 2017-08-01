@@ -54,7 +54,7 @@ setuptools.setup(
     long_description=readme,
     author='William Myers',
     author_email='will@platoai.com',
-    url='https://github.com/platoai/platoai-python',
+    url='https://github.com/platoai/platoai',
     py_modules=['platoai'],
     install_requires=['requests'],
     cmdclass={
