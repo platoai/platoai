@@ -4,6 +4,7 @@ platoai
 .. image:: https://readthedocs.org/projects/platoai/badge/?version=latest
    :target: http://platoai.readthedocs.io/en/latest/?badge=latest
 |
+|
 
     Python implementation of the `Plato AI`_ `API`_.
 
@@ -13,7 +14,6 @@ installation
 ::
 
     pip install platoai
-
 
 usage
 -----
@@ -45,6 +45,11 @@ usage
 
     with open('test.wav', 'rb') as f:
         print(platoai.push(metadata, f))
+
+documentation
+-------------
+
+https://platoai.readthedocs.io
 
 
 .. _Plato AI: https://platoai.com/
