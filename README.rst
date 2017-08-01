@@ -45,4 +45,4 @@ usage
 
 
 .. _Plato AI: https://platoai.com/
-.. _API: http://api.platoai.com:9001/graphiql
+.. _API: https://api.platoai.com:9000/graphiql
