@@ -7,12 +7,13 @@ platoai
 
     Python implementation of the `Plato AI`_ `API`_.
 
+.. inclusion-marker-do-not-remove
 installation
 ------------
 
-::
+.. code:: bash
 
-    pip install platoai
+  $ pip install platoai
 
 usage
 -----
