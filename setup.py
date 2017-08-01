@@ -73,7 +73,7 @@ setuptools.setup(
     author='William Myers',
     author_email='will@platoai.com',
     url='https://github.com/platoai/platoai',
-    install_requires=['requests'],
+    install_requires=['requests', 'gql'],
     extras_require={
         'docs': ['sphinx'],
         'dev': ['wheel', 'twine']

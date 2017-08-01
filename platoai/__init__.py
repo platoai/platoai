@@ -1,6 +1,8 @@
 import os
 import json
 from platoai.push_request import PushRequest
+import gql
+from platoai.transport import HttpTransport
 
 
 class Client(object):
@@ -9,7 +11,7 @@ class Client(object):
         url (str, optional): The URL for the API.
     """
 
-    def __init__(self, url=None, token=None):
+    def __init__(self, url=None, token=None, timeout=None):
         if not url or not token:
             with open(os.environ['PLATOAI_APPLICATION_CREDENTIALS'], 'r') as f:
                 config = json.loads(f.read())
@@ -22,6 +24,10 @@ class Client(object):
 
         self.url = url
         self.token = token
+
+        self._client = gql.Client(
+            transport=HttpTransport('{}/graphql'.format(url), token, timeout),
+            fetch_schema_from_transport=True)
 
     def push_request(self, metadata, audio=None):
         """A file-like object used to enqueue a call audio file to be processed
@@ -109,3 +115,6 @@ class Client(object):
         """
         with PushRequest(metadata, audio=audio, url=self.url) as push_request:
             return push_request.push()
+
+    def execute(self, document, *args, **kwargs):
+        return self._client.execute(document, *args, **kwargs)

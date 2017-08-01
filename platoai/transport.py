@@ -3,9 +3,9 @@ from graphql.execution import ExecutionResult
 from graphql.language.printer import print_ast
 
 
-class PlatoaiHTTPTransport(object):
+class HttpTransport(object):
 
-    def __init__(self, url, token, timeout=None):
+    def __init__(self, url, token, timeout=None, headers=None):
         """
         Args:
             url (str): The GraphQL URL
@@ -15,6 +15,10 @@ class PlatoaiHTTPTransport(object):
         self.url = url
         self.default_timeout = timeout
         self.token = token
+        if not headers:
+            self.headers = {}
+        if self.token:
+            self.headers['Authorization'] = 'Bearer {}'.format(self.token)
 
     def execute(self, document, variable_values=None, timeout=None):
         payload = {
@@ -25,9 +29,7 @@ class PlatoaiHTTPTransport(object):
         # TODO: check for file objects: hasattr(fp, 'read')
 
         post_args = {
-            'headers': {
-                'Authorization': 'Bearer {}'.format(self.token)
-            },
+            'headers': self.headers,
             'timeout': timeout or self.default_timeout,
             'json': payload
         }
