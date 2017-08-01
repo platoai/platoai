@@ -74,10 +74,8 @@ setuptools.setup(
     author_email='will@platoai.com',
     url='https://github.com/platoai/platoai',
     install_requires=['requests', 'gql'],
-    extras_require={
-        'docs': ['sphinx'],
-        'dev': ['wheel', 'twine']
-    },
+    extras_require={'docs': ['sphinx'],
+                    'dev': ['wheel', 'twine']},
     python_requires='>=2.7',
     packages=setuptools.find_packages(exclude=['docs', 'tests*']),
     cmdclass={
