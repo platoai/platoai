@@ -53,8 +53,9 @@ setuptools.setup(
     author='William Myers',
     author_email='will@platoai.com',
     url='https://github.com/platoai/platoai',
-    py_modules=['platoai'],
     install_requires=['requests'],
+    python_requires='>=2.7',
+    packages=setuptools.find_packages(exclude=['docs', 'tests*']),
     cmdclass={
         'clean': CustomCleanCommand,
     },
