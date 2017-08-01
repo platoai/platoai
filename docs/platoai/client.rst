@@ -1,6 +1,6 @@
-Client
-~~~~~~~
-
-.. automodule:: platoai.client
-  :members:
-  :show-inheritance:
+.. Client
+.. ~~~~~~~
+..
+.. .. automodule:: platoai.client
+..   :members:
+..   :show-inheritance:
