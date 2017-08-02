@@ -3,7 +3,7 @@ import json
 from platoai.push_request import PushRequest
 import gql
 from platoai.transport import HttpTransport
-
+import platoai.auth
 
 class Client(object):
     """Plato AI API client.
@@ -13,14 +13,13 @@ class Client(object):
 
     def __init__(self, url=None, token=None, timeout=None):
         if not url or not token:
-            with open(os.environ['PLATOAI_APPLICATION_CREDENTIALS'], 'r') as f:
-                config = json.loads(f.read())
+            creds = platoai.auth.credentials()
 
-                if not url:
-                    url = config.get('url', 'https://api.platoai.com:9000')
+            if not url:
+                url = creds.get('url', 'https://api.platoai.com:9000')
 
-                if not token:
-                    token = config['token']
+            if not token:
+                token = creds['token']
 
         self.url = url
         self.token = token
