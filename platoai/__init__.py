@@ -5,10 +5,14 @@ import gql
 from platoai.transport import HttpTransport
 import platoai.auth
 
+
 class Client(object):
     """Plato AI API client.
+
     Args:
         url (str, optional): The URL for the API.
+        token (str, optional): The JWT authenticating this Client to the API.
+        timeout (int, optional): The timeout for API calls.
     """
 
     def __init__(self, url=None, token=None, timeout=None):
@@ -33,10 +37,10 @@ class Client(object):
         by Plato AI.
 
         Args:
-            metadata (:obj:`dictionary`): The metadata for the call.
-            audio (:obj:`file-like object`): The raw audio bytes of the call.
+            metadata (dict): The metadata for the call.
+            audio (file): The raw audio bytes of the call.
         Returns:
-            metadata (:obj:`dictionary`): The metadata for the uploaded call.
+            metadata (dict): The metadata for the uploaded call.
         Example:
             .. code:: python
 
@@ -78,10 +82,10 @@ class Client(object):
         """Enqueue a call to be processed by Plato AI.
 
         Args:
-            metadata (:obj:`dictionary`): The metadata for the call.
-            audio (:obj:`file-like object`): The raw audio bytes of the call.
+            metadata (dict): The metadata for the call.
+            audio (file): The raw audio bytes of the call.
         Returns:
-            metadata (:obj:`dictionary`): The metadata for the uploaded call.
+            metadata (dict): The metadata for the uploaded call.
         Example:
             .. code:: python
 
