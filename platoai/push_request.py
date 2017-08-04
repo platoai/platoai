@@ -55,7 +55,7 @@ class PushRequest(object):
         }
         url = '{}/enqueue'.format(self.url)
         r = requests.post(url, files=files).content
-        return json.loads(r.decode()) if r else None
+        return r.decode() if r else None
 
     def close(self):
         self.buffer.close()
