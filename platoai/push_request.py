@@ -50,6 +50,8 @@ class PushRequest(object):
         Returns:
             metadata (:obj:`dictionary`): The metadata for the uploaded call.
         """
+        self.buffer.seek(0)
+
         payload = json.dumps(self.metadata, default=_serialize)
         files = {
             'metadata': (None, payload, 'application/json'),
