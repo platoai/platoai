@@ -38,6 +38,9 @@ class PushRequest(object):
     def __enter__(self):
         return self
 
+    def read(self, *args, **kwargs):
+        return self.buffer.read(*args, **kwargs)
+
     def write(self, chunk):
         return self.buffer.write(chunk)
 
