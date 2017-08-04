@@ -58,9 +58,12 @@ class PushRequest(object):
             'file': (self.metadata.get('identifier'), self.buffer,
                      'application/octet-stream')
         }
-        url = '{}/enqueue'.format(self.url)
-        r = requests.post(url, files=files).content
-        return r.decode() if r else None
+
+        r = requests.post('{}/enqueue'.format(self.url), files=files)
+        try:
+            return r.json()
+        except ValueError:
+            return r.text()
 
     def close(self):
         self.buffer.close()
