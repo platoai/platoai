@@ -54,7 +54,8 @@ class PushRequest(object):
                      'application/octet-stream')
         }
         url = '{}/enqueue'.format(self.url)
-        return requests.post(url, files=files).content
+        r = requests.post(url, files=files).content
+        return json.loads(r.decode()) if r else None
 
     def close(self):
         self.buffer.close()
