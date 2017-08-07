@@ -1,9 +1,12 @@
-import os
 from io import BytesIO
-import datetime
 import json
+import datetime
 import requests
 
+try:
+    from json.decoder import JSONDecodeError
+except ImportError:
+    JSONDecodeError = ValueError
 
 def _serialize(obj):
     """JSON serializer for objects not serializable by default json code"""
@@ -62,7 +65,7 @@ class PushRequest(object):
         r = requests.post('{}/enqueue'.format(self.url), files=files)
         try:
             return r.json()
-        except json.decoder.JSONDecodeError:
+        except JSONDecodeError:
             raise RuntimeError(r.content)
 
     def close(self):
