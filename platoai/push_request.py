@@ -63,7 +63,7 @@ class PushRequest(object):
         try:
             return r.json()
         except ValueError:
-            return r.text()
+            raise RuntimeError(r.text())
 
     def close(self):
         self.buffer.close()
