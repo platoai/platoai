@@ -67,7 +67,7 @@ with open("README.rst") as readme_file:
 
 setuptools.setup(
     name='platoai',
-    version='0.3.8',
+    version='0.3.9',
     description='python implementation of the Plato AI API',
     long_description=readme,
     author='William Myers',
