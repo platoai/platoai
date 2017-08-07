@@ -62,8 +62,8 @@ class PushRequest(object):
         r = requests.post('{}/enqueue'.format(self.url), files=files)
         try:
             return r.json()
-        except ValueError:
-            raise RuntimeError(r.text())
+        except json.decoder.JSONDecodeError:
+            raise RuntimeError(r.content)
 
     def close(self):
         self.buffer.close()
