@@ -8,6 +8,7 @@ try:
 except ImportError:
     JSONDecodeError = ValueError
 
+
 def _serialize(obj):
     """JSON serializer for objects not serializable by default json code"""
 
@@ -27,13 +28,12 @@ class PushRequest(object):
         url (str, optional): The URL for the API.
     """
 
-    def __init__(self, metadata, audio=None,
+    def __init__(self, token, metadata, audio=None,
                  url='https://api.platoai.com:9000'):
 
         self.metadata = metadata
-
+        self.token = token
         self.url = url
-
         if not audio:
             audio = BytesIO()
         self.buffer = audio
@@ -61,8 +61,10 @@ class PushRequest(object):
             'file': (self.metadata.get('identifier'), self.buffer,
                      'application/octet-stream')
         }
+        headers = {"Authorization": "Bearer {}".format(self.token)}
+        url = '{}/enqueue'.format(self.url)
 
-        r = requests.post('{}/enqueue'.format(self.url), files=files)
+        r = requests.post(url=url, files=files, headers=headers)
         try:
             return r.json()
         except JSONDecodeError:
