@@ -16,17 +16,7 @@ class Client(object):
     """
 
     def __init__(self, url=None, token=None, timeout=None):
-        if not url or not token:
-            creds = platoai.auth.credentials()
-
-            if not url:
-                url = creds.get('url', 'https://api.platoai.com:9000')
-
-            if not token:
-                token = creds['token']
-
-        self.url = url
-        self.token = token
+        self.url, self.token = platoai.auth.credentials(url=url, token=token)
 
         self._client = gql.Client(
             transport=HttpTransport('{}/graphql'.format(url), token, timeout),
