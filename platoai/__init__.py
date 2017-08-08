@@ -18,8 +18,9 @@ class Client(object):
     def __init__(self, url=None, token=None, timeout=None):
         self.url, self.token = platoai.auth.credentials(url=url, token=token)
 
+        graphql_url = '{}/graphql'.format(self.url)
         self._client = gql.Client(
-            transport=HttpTransport('{}/graphql'.format(url), token, timeout),
+            transport=HttpTransport(graphql_url, token, timeout),
             fetch_schema_from_transport=True)
 
     def push_request(self, metadata, audio=None):
