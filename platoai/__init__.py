@@ -80,7 +80,7 @@ class Client(object):
                     push_request.push()
 
         """
-        return PushRequest(metadata, audio=audio, url=self.url)
+        return PushRequest(self.token, metadata, audio=audio, url=self.url)
 
     def push(self, metadata, audio):
         """Enqueue a call to be processed by Plato AI.
@@ -124,7 +124,7 @@ class Client(object):
                 with open('test.wav', 'rb') as f:
                     client.push(metadata, f)
         """
-        with PushRequest(metadata, audio=audio, url=self.url) as push_request:
+        with PushRequest(self.token, metadata, audio, self.url) as push_request:
             return push_request.push()
 
     def execute(self, document, *args, **kwargs):
