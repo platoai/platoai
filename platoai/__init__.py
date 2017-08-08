@@ -50,6 +50,10 @@ class Client(object):
 
                 metadata = {
                     'identifier': 'callId',
+                    'type': {
+                        'identifier': 'typeIdentifier',
+                        'name': 'typeName',
+                    },
                     'timestamp': datetime.datetime.now(),
                     'company': {
                         'id': 'companyId'
@@ -94,6 +98,10 @@ class Client(object):
 
                 metadata = {
                     'identifier': 'callId',
+                    'type': {
+                        'identifier': 'typeIdentifier',
+                        'name': 'typeName',
+                    },
                     'timestamp': datetime.datetime.now(),
                     'company': {
                         'id': 'companyId'
