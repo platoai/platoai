@@ -40,7 +40,7 @@ class Client(object):
                 import platoai
 
                 metadata = {
-                    'identifier': 'callId',
+                    'identifier': 'callIdentifier',
                     'type': {
                         'identifier': 'typeIdentifier',
                         'name': 'typeName',
@@ -49,17 +49,18 @@ class Client(object):
                     'company': {
                         'id': 'companyId'
                     },
+                    'direction': 'OUTGOING',  # or INCOMING
                     'agents': [{
-                        'identifier': 'agentId',
+                        'identifier': 'agentIdentifier',
                         'name': 'Agent Name',
-                        'phoneNumber': 1234567890
+                        'phoneNumber': 1234567890  # optional
                     }],
+                    # optional
                     'customers': [{
-                        'identifier': 'customerId',
+                        'identifier': 'customerIdentifier',
                         'name': 'Customer Name',
-                        'phoneNumber': 9876543210
+                        'phoneNumber': 9876543210  # optional
                     }],
-                    'direction': 'OUTGOING'
                 }
 
                 client = platoai.Client()
@@ -88,7 +89,7 @@ class Client(object):
                 import platoai
 
                 metadata = {
-                    'identifier': 'callId',
+                    'identifier': 'callIdentifier',
                     'type': {
                         'identifier': 'typeIdentifier',
                         'name': 'typeName',
@@ -97,17 +98,18 @@ class Client(object):
                     'company': {
                         'id': 'companyId'
                     },
+                    'direction': 'OUTGOING',  # or INCOMING
                     'agents': [{
-                        'identifier': 'agentId',
+                        'identifier': 'agentIdentifier',
                         'name': 'Agent Name',
-                        'phoneNumber': 1234567890
+                        'phoneNumber': 1234567890  # optional
                     }],
+                    # optional
                     'customers': [{
-                        'identifier': 'customerId',
+                        'identifier': 'customerIdentifier',
                         'name': 'Customer Name',
-                        'phoneNumber': 9876543210
+                        'phoneNumber': 9876543210  # optional
                     }],
-                    'direction': 'OUTGOING'
                 }
 
                 client = platoai.Client()
