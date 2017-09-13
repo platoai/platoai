@@ -7,6 +7,8 @@ platoai
 
     Python implementation of the `Plato AI`_ `API`_.
 
+    *NOTE*: This library is under active development and should not be considered stable.
+
 .. inclusion-marker-do-not-remove
 installation
 ------------
