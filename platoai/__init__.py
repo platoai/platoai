@@ -46,9 +46,6 @@ class Client(object):
                         'name': 'typeName',
                     },
                     'timestamp': datetime.datetime.now(),
-                    'company': {
-                        'id': 'companyId'
-                    },
                     'direction': 'OUTGOING',  # or INCOMING
                     'agents': [{
                         'identifier': 'agentIdentifier',
@@ -95,9 +92,6 @@ class Client(object):
                         'name': 'typeName',
                     },
                     'timestamp': datetime.datetime.now(),
-                    'company': {
-                        'id': 'companyId'
-                    },
                     'direction': 'OUTGOING',  # or INCOMING
                     'agents': [{
                         'identifier': 'agentIdentifier',
