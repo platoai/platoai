@@ -19,15 +19,16 @@ def credentials(url=None, token=None):
         token = os.getenv('PLATOAI_API_TOKEN')
 
     if not url or not token:
-        with open(os.environ['PLATOAI_APPLICATION_CREDENTIALS'], 'r') as f:
-            creds = json.loads(f.read())
+        creds = {}
+        creds_file = os.getenv('PLATOAI_APPLICATION_CREDENTIALS')
+        if creds_file:
+            with open(creds_file, 'r') as f:
+                creds = json.loads(f.read())
 
         if not url:
             url = creds.get('url', 'https://api.platoai.com:9000')
 
         if not token:
             token = creds.get('token')
-
-    assert token and url, 'Must provide token and url'
 
     return url, token
