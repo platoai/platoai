@@ -115,4 +115,5 @@ class Client(object):
             return push_request.push()
 
     def execute(self, document, *args, **kwargs):
-        return self._client.execute(document, *args, **kwargs)
+        doc = gql.gql(document) if isinstance(document, str) else document
+        return self._client.execute(doc, *args, **kwargs)
