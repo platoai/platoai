@@ -58,6 +58,11 @@ class Client(object):
                         'name': 'Customer Name',
                         'phoneNumber': 9876543210  # optional
                     }],
+                    'disposition': {
+                        'identifier': 'dispositionIdentifier',
+                        'name': 'dispositionName',
+                    },
+                    'tags': ['tag1', 'tag2'],
                 }
 
                 client = platoai.Client()
@@ -104,6 +109,11 @@ class Client(object):
                         'name': 'Customer Name',
                         'phoneNumber': 9876543210  # optional
                     }],
+                    'disposition': {
+                        'identifier': 'dispositionIdentifier',
+                        'name': 'dispositionName',
+                    },
+                    'tags': ['tag1', 'tag2'],
                 }
 
                 client = platoai.Client()
