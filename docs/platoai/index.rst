@@ -1,4 +1,4 @@
-platoai
+voxjar
 =======
 
 .. toctree::
@@ -7,6 +7,6 @@ platoai
 
   auth
 
-.. automodule:: platoai
+.. automodule:: voxjar
   :members:
   :show-inheritance:
