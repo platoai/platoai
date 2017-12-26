@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = platoai
+SPHINXPROJ    = voxjar
 SOURCEDIR     = .
 BUILDDIR      = _build
 

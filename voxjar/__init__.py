@@ -1,13 +1,13 @@
 import os
 import json
-from platoai.push_request import PushRequest
+from voxjar.push_request import PushRequest
 import gql
-from platoai.transport import HttpTransport
-import platoai.auth
+from voxjar.transport import HttpTransport
+import voxjar.auth
 
 
 class Client(object):
-    """Plato AI API client.
+    """Voxjar API client.
 
     Args:
         url (str, optional): The URL for the API.
@@ -16,7 +16,7 @@ class Client(object):
     """
 
     def __init__(self, url=None, token=None, timeout=None):
-        self.url, self.token = platoai.auth.credentials(url=url, token=token)
+        self.url, self.token = voxjar.auth.credentials(url=url, token=token)
 
         graphql_url = '{}/graphql'.format(self.url)
         self._client = gql.Client(
@@ -25,7 +25,7 @@ class Client(object):
 
     def push_request(self, metadata, audio=None):
         """A file-like object used to enqueue a call audio file to be processed
-        by Plato AI.
+        by Voxjar.
 
         Args:
             metadata (dict): The metadata for the call.
@@ -37,7 +37,7 @@ class Client(object):
 
                 import datetime
                 import requests
-                import platoai
+                import voxjar
 
                 metadata = {
                     'identifier': 'callIdentifier',
@@ -65,7 +65,7 @@ class Client(object):
                     'tags': ['tag1', 'tag2'],
                 }
 
-                client = platoai.Client()
+                client = voxjar.Client()
 
                 r = requests.get('https://somesource.com', stream=True)
                 with client.push_request(metadata) as push_request:
@@ -77,7 +77,7 @@ class Client(object):
         return PushRequest(self.token, metadata, audio=audio, url=self.url)
 
     def push(self, metadata, audio):
-        """Enqueue a call to be processed by Plato AI.
+        """Enqueue a call to be processed by Voxjar.
 
         Args:
             metadata (dict): The metadata for the call.
@@ -88,7 +88,7 @@ class Client(object):
             .. code:: python
 
                 import datetime
-                import platoai
+                import voxjar
 
                 metadata = {
                     'identifier': 'callIdentifier',
@@ -116,7 +116,7 @@ class Client(object):
                     'tags': ['tag1', 'tag2'],
                 }
 
-                client = platoai.Client()
+                client = voxjar.Client()
 
                 with open('test.wav', 'rb') as f:
                     client.push(metadata, f)

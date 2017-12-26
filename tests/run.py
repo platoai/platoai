@@ -1,10 +1,9 @@
 from __future__ import print_function
 import os
 import datetime
-import time
 from pprint import pprint
 # import json
-import platoai
+import voxjar
 
 if __name__ == '__main__':
     now = datetime.datetime.now()
@@ -32,9 +31,9 @@ if __name__ == '__main__':
         'direction': 'OUTGOING'
     }
 
-    url = os.getenv('PLATOAI_API_URL', 'http://localhost:9001')
+    url = os.getenv('VOXJAR_API_URL', 'http://localhost:9001')
     with open('./test.wav', 'rb') as f:
-        client = platoai.Client(url=url, token='faketoken')
+        client = voxjar.Client(url=url, token='faketoken')
         try:
             pprint(client.push(metadata, audio=f))
         except RuntimeError as e:

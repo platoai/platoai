@@ -20,7 +20,7 @@ def _serialize(obj):
 
 class PushRequest(object):
     """A file-like object used to enqueue a call audio file to be processed by
-    Plato AI.
+    Voxjar.
 
     Args:
         metadata (:obj:`dictionary`): The metadata for the call.
@@ -29,7 +29,7 @@ class PushRequest(object):
     """
 
     def __init__(self, token, metadata, audio=None,
-                 url='https://api.platoai.com:9000'):
+                 url='https://api.voxjar.com:9000'):
 
         self.metadata = metadata
         self.token = token
@@ -48,7 +48,7 @@ class PushRequest(object):
         return self.buffer.write(chunk)
 
     def push(self):
-        """Enqueue a call to be processed by Plato AI.
+        """Enqueue a call to be processed by Voxjar.
 
         Returns:
             metadata (:obj:`dictionary`): The metadata for the uploaded call.

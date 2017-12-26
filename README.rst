@@ -1,11 +1,11 @@
-platoai
+voxjar
 =======
 
-.. image:: https://readthedocs.org/projects/platoai/badge/?version=latest
-   :target: http://platoai.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/voxjar/badge/?version=latest
+   :target: http://voxjar.readthedocs.io/en/latest/?badge=latest
 |
 
-    Python implementation of the `Plato AI`_ `API`_.
+    Python implementation of the `Voxjar`_ `API`_.
 
     *NOTE*: This library is under active development and should not be considered stable.
 
@@ -15,13 +15,13 @@ installation
 
 .. code:: bash
 
-  $ pip install platoai
+  $ pip install voxjar
 
 documentation
 -------------
 
-https://platoai.readthedocs.io
+https://voxjar.readthedocs.io
 
 
-.. _Plato AI: https://platoai.com/
-.. _API: https://api.platoai.com:9000/graphiql
+.. _Voxjar: https://voxjar.com/
+.. _API: https://api.voxjar.com:9000/graphiql

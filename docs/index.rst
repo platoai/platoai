@@ -3,12 +3,12 @@
   :hidden:
 
   auth/index
-  platoai/index
+  voxjar/index
 
-`platoai <https://github.com/platoai/platoai/>`__
+`voxjar <https://github.com/voxjar/voxjar/>`__
 =================================================
 
-  Python implementation of the `Plato AI`_ `API`_.
+  Python implementation of the `Voxjar`_ `API`_.
 
 .. include:: ../README.rst
   :start-after: inclusion-marker-do-not-remove

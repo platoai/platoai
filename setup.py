@@ -6,7 +6,7 @@ import glob
 import subprocess
 import setuptools
 
-package_dir = 'platoai'
+package_dir = 'voxjar'
 
 
 class CustomCleanCommand(setuptools.Command):
@@ -66,13 +66,13 @@ with open("README.rst") as readme_file:
     readme = readme_file.read()
 
 setuptools.setup(
-    name='platoai',
+    name='voxjar',
     version='0.4.3',
-    description='python implementation of the Plato AI API',
+    description='python implementation of the Voxjar API',
     long_description=readme,
     author='William Myers',
-    author_email='will@platoai.com',
-    url='https://github.com/platoai/platoai',
+    author_email='will@voxjar.com',
+    url='https://github.com/voxjar/voxjar',
     install_requires=['requests', 'gql'],
     extras_require={'docs': ['sphinx'],
                     'dev': ['wheel', 'twine']},
@@ -83,7 +83,7 @@ setuptools.setup(
         'docs': CustomDocsCommand,
     },
     license='Apache-2',
-    keywords='plato platoai ai requests',
+    keywords='voxjar voxjar ai requests',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
