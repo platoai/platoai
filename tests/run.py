@@ -1,5 +1,4 @@
 from __future__ import print_function
-import os
 import datetime
 from pprint import pprint
 # import json
@@ -28,12 +27,15 @@ if __name__ == '__main__':
             'name': 'test_customer_name',
             'phoneNumber': 9876543210
         }],
-        'direction': 'OUTGOING'
+        'direction': 'OUTGOING',
+        'options': {
+            'processAudio': False
+        },
     }
 
-    url = os.getenv('VOXJAR_API_URL', 'http://localhost:9001')
     with open('./test.wav', 'rb') as f:
-        client = voxjar.Client(url=url, token='faketoken')
+        client = voxjar.Client()
+        print(client)
         try:
             pprint(client.push(metadata, audio=f))
         except RuntimeError as e:
