@@ -67,7 +67,7 @@ with open("README.rst") as readme_file:
 
 setuptools.setup(
     name='voxjar',
-    version='0.4.4',
+    version='0.4.5',
     description='python implementation of the Voxjar API',
     long_description=readme,
     author='William Myers',
