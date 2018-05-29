@@ -50,19 +50,34 @@ class Client(object):
                     'agents': [{
                         'identifier': 'agentIdentifier',
                         'name': 'Agent Name',
-                        'phoneNumber': 1234567890  # optional
+                        'phoneNumber': 1234567890,
+                        # optional
+                        'hiredAt': '2018-05-29T05:14:18+00:00',
+                        # optional
+                        'metadata': {
+                            'someCustomField': 'someCustomValue',
+                        },
                     }],
-                    # optional
                     'customers': [{
                         'identifier': 'customerIdentifier',
                         'name': 'Customer Name',
-                        'phoneNumber': 9876543210  # optional
+                        'phoneNumber': 9876543210,
+                        # optional
+                        'metadata': {
+                            'someCustomField': 'someCustomValue',
+                        },
                     }],
+                    # optional
                     'disposition': {
                         'identifier': 'dispositionIdentifier',
                         'name': 'dispositionName',
                     },
+                    # optional
                     'tags': ['tag1', 'tag2'],
+                    # optional
+                    'metadata': {
+                        'someCustomField': 'someCustomValue',
+                    },
                 }
 
                 client = voxjar.Client()
@@ -101,19 +116,34 @@ class Client(object):
                     'agents': [{
                         'identifier': 'agentIdentifier',
                         'name': 'Agent Name',
-                        'phoneNumber': 1234567890  # optional
+                        'phoneNumber': 1234567890,
+                        # optional
+                        'hiredAt': '2018-05-29T05:14:18+00:00',
+                        # optional
+                        'metadata': {
+                            'someCustomField': 'someCustomValue',
+                        },
                     }],
-                    # optional
                     'customers': [{
                         'identifier': 'customerIdentifier',
                         'name': 'Customer Name',
-                        'phoneNumber': 9876543210  # optional
+                        'phoneNumber': 9876543210,
+                        # optional
+                        'metadata': {
+                            'someCustomField': 'someCustomValue',
+                        },
                     }],
+                    # optional
                     'disposition': {
                         'identifier': 'dispositionIdentifier',
                         'name': 'dispositionName',
                     },
+                    # optional
                     'tags': ['tag1', 'tag2'],
+                    # optional
+                    'metadata': {
+                        'someCustomField': 'someCustomValue',
+                    },
                 }
 
                 client = voxjar.Client()
