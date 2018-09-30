@@ -5,7 +5,7 @@ from graphql.language.printer import print_ast
 
 class HttpTransport(object):
 
-    def __init__(self, url, token=None, timeout=None, headers=None):
+    def __init__(self, url, token=None, timeout=None, headers={}):
         """
         Args:
             url (str): The GraphQL URL
@@ -14,8 +14,7 @@ class HttpTransport(object):
         """
         self.url = url
         self.default_timeout = timeout
-        if not headers:
-            self.headers = {}
+        self.headers = headers
         self.inject_token(token)
 
     def inject_token(self, token):
