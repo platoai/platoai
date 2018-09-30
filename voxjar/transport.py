@@ -5,7 +5,7 @@ from graphql.language.printer import print_ast
 
 class HttpTransport(object):
 
-    def __init__(self, url, token, timeout=None, headers=None):
+    def __init__(self, url, token=None, timeout=None, headers=None):
         """
         Args:
             url (str): The GraphQL URL
@@ -14,13 +14,15 @@ class HttpTransport(object):
         """
         self.url = url
         self.default_timeout = timeout
-        self.token = token
         if not headers:
             self.headers = {}
-        if self.token:
-            self.headers['Authorization'] = 'Bearer {}'.format(self.token)
+        self.inject_token(token)
 
-    def execute(self, document, variable_values=None, timeout=None):
+    def inject_token(self, token):
+        if token:
+            self.headers['Authorization'] = 'Bearer {}'.format(token)
+
+    def execute(self, document, variable_values=None, timeout=None, token=None):
         payload = {
             'query': print_ast(document),
             'variables': variable_values or {}
@@ -28,11 +30,14 @@ class HttpTransport(object):
 
         # TODO: check for file objects: hasattr(fp, 'read')
 
+        self.inject_token(token)
+
         post_args = {
             'headers': self.headers,
             'timeout': timeout or self.default_timeout,
             'json': payload
         }
+
         request = requests.post(self.url, **post_args)
         request.raise_for_status()
 
