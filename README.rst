@@ -17,7 +17,7 @@ installation
 documentation
 -------------
 
-https://voxjar.github.io/voxjar/
+https://voxjar.github.io/voxjar/index.html
 
 
 .. _Voxjar: https://voxjar.com/
