@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'voxjar'
-copyright = u'2016-2017, Voxjar'
+copyright = u'2016-2019, Voxjar Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -57,9 +57,9 @@ class CustomDocsCommand(setuptools.Command):
 
     def run(self):
         """Run build docs."""
-        shutil.rmtree('./docs/_build')
+        shutil.rmtree('./docs/_build', ignore_errors=True)
         subprocess.check_output(['make', '-C', 'docs', 'html'])
-        print(subprocess.check_output(['open', './docs/_build/html/index.html']).decode())
+        print(subprocess.check_output(['open', './docs/index.html']).decode())
 
 
 with open("README.rst") as readme_file:

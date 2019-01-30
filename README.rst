@@ -1,15 +1,12 @@
 voxjar
 =======
-
-.. image:: https://readthedocs.org/projects/voxjar/badge/?version=latest
-   :target: http://voxjar.readthedocs.io/en/latest/?badge=latest
+.. inclusion-marker-do-not-remove
 |
 
-    Python implementation of the `Voxjar`_ `API`_.
+    Python implementation of the `Voxjar`_ `GraphQL`_ `API`_.
+    
+*NOTE:* This library is under active development and should not be considered stable.
 
-    *NOTE*: This library is under active development and should not be considered stable.
-
-.. inclusion-marker-do-not-remove
 installation
 ------------
 
@@ -20,8 +17,9 @@ installation
 documentation
 -------------
 
-https://voxjar.readthedocs.io
+https://voxjar.github.io/voxjar/
 
 
 .. _Voxjar: https://voxjar.com/
-.. _API: https://api.voxjar.com:9000/graphiql
+.. _GraphQL: https://graphql.org/
+.. _API: https://api.voxjar.com/graphql
