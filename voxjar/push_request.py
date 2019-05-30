@@ -28,8 +28,7 @@ class PushRequest(object):
         url (str, optional): The URL for the API.
     """
 
-    def __init__(self, token, metadata, audio=None,
-                 url='https://api.voxjar.com:9000'):
+    def __init__(self, token, metadata, audio=None, url="https://api.voxjar.com:9000"):
 
         self.metadata = metadata
         self.token = token
@@ -57,12 +56,15 @@ class PushRequest(object):
 
         payload = json.dumps(self.metadata, default=_serialize)
         files = {
-            'metadata': (None, payload, 'application/json'),
-            'file': (self.metadata.get('identifier'), self.buffer,
-                     'application/octet-stream')
+            "metadata": (None, payload, "application/json"),
+            "file": (
+                self.metadata.get("identifier"),
+                self.buffer,
+                "application/octet-stream",
+            ),
         }
         headers = {"Authorization": "Bearer {}".format(self.token)}
-        url = '{}/enqueue'.format(self.url)
+        url = "{}/enqueue".format(self.url)
 
         r = requests.post(url=url, files=files, headers=headers)
         try:

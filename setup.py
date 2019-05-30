@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 from __future__ import print_function
+
+import glob
 import os
 import shutil
-import glob
 import subprocess
+
 import setuptools
 
-package_dir = 'voxjar'
+package_dir = "voxjar"
 
 
 class CustomCleanCommand(setuptools.Command):
-    description = 'remove build files'
+    description = "remove build files"
     user_options = []
 
     def initialize_options(self):
@@ -26,25 +28,27 @@ class CustomCleanCommand(setuptools.Command):
 
         def respect_dry_run(path, fn):
             if self.dry_run:
-                print('would remove {}...'.format(path))
+                print("would remove {}...".format(path))
             else:
                 if self.verbose > 1:
-                    print('removing {}...'.format(path))
+                    print("removing {}...".format(path))
                 fn(path)
 
         for d in [
-                './dist/', './build/', './__pycache__/',
-                './{}.egg-info/'.format(package_dir)
+            "./dist/",
+            "./build/",
+            "./__pycache__/",
+            "./{}.egg-info/".format(package_dir),
         ]:
             if os.path.isdir(d):
                 respect_dry_run(d, shutil.rmtree)
 
-        for f in glob.glob('*.pyc'):
+        for f in glob.glob("*.pyc"):
             respect_dry_run(f, os.remove)
 
 
 class CustomDocsCommand(setuptools.Command):
-    description = 'build documentation'
+    description = "build documentation"
     user_options = []
 
     def initialize_options(self):
@@ -57,37 +61,34 @@ class CustomDocsCommand(setuptools.Command):
 
     def run(self):
         """Run build docs."""
-        shutil.rmtree('./docs/_build', ignore_errors=True)
-        subprocess.check_output(['make', '-C', 'docs', 'html'])
-        print(subprocess.check_output(['open', './docs/index.html']).decode())
+        shutil.rmtree("./docs/_build", ignore_errors=True)
+        subprocess.check_output(["make", "-C", "docs", "html"])
+        print(subprocess.check_output(["open", "./docs/index.html"]).decode())
 
 
 with open("README.rst") as readme_file:
     readme = readme_file.read()
 
 setuptools.setup(
-    name='voxjar',
-    version='0.5.0',
-    description='python implementation of the Voxjar API',
+    name="voxjar",
+    version="0.5.0",
+    description="python implementation of the Voxjar API",
     long_description=readme,
-    author='William Myers',
-    author_email='will@voxjar.com',
-    url='https://github.com/voxjar/voxjar',
-    install_requires=['requests', 'gql'],
-    extras_require={'docs': ['sphinx'],
-                    'dev': ['wheel', 'twine', 'requests']},
-    python_requires='>=2.7',
-    packages=setuptools.find_packages(exclude=['docs', 'tests*']),
-    cmdclass={
-        'clean': CustomCleanCommand,
-        'docs': CustomDocsCommand,
-    },
-    license='Apache-2',
-    keywords='voxjar voxjar ai requests',
+    author="William Myers",
+    author_email="will@voxjar.com",
+    url="https://github.com/voxjar/voxjar",
+    install_requires=["requests", "gql"],
+    extras_require={"docs": ["sphinx"], "dev": ["wheel", "twine", "requests"]},
+    python_requires=">=2.7",
+    packages=setuptools.find_packages(exclude=["docs", "tests*"]),
+    cmdclass={"clean": CustomCleanCommand, "docs": CustomDocsCommand},
+    license="Apache-2",
+    keywords="voxjar voxjar ai requests",
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: Apache Software License',
-    ])
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: Apache Software License",
+    ],
+)
