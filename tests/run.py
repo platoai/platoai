@@ -1,7 +1,12 @@
 from __future__ import print_function
 
 import datetime
+import os
+import sys
+from io import BytesIO
 from pprint import pprint
+
+import requests
 
 import voxjar
 
@@ -9,9 +14,6 @@ if __name__ == "__main__":
     metadata = {
         "identifier": "test_call_identifier",
         "timestamp": datetime.datetime.now(),
-        # 'company': {
-        #     'id': 'b87cc8ea-6820-11e7-891e-4f389aefc782'
-        # },
         "type": {
             "identifier": "test_call_type_identifier",
             "name": "test_call_type_name",
@@ -34,9 +36,14 @@ if __name__ == "__main__":
         "options": {"processAudio": True},
     }
 
-    with open("./test.mp4", "rb") as f:
-        client = voxjar.Client()
-        try:
-            pprint(client.push(metadata, audio=f))
-        except RuntimeError as e:
-            print(e)
+    try:
+        url = sys.argv[1]
+    except IndexError:
+        # yapf: disable
+        url = "https://storage.googleapis.com/platoaiinc-audio-test/1-wav-gsm_ms-s16-8000"
+
+    client = voxjar.Client(url=os.getenv("VOXJAR_API_URL", "https://api.voxjar.com:9001"))
+    try:
+        pprint(client.push(metadata, audio=BytesIO(requests.get(url).content)))
+    except RuntimeError as e:
+        print(e)
