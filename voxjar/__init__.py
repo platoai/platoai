@@ -1,9 +1,10 @@
-import os
 import json
-from voxjar.push_request import PushRequest
+import os
+
 import gql
-from voxjar.transport import HttpTransport
 import voxjar.auth
+from voxjar.push_request import PushRequest
+from voxjar.transport import HttpTransport
 
 
 class Client(object):

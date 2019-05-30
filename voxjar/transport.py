@@ -1,4 +1,5 @@
 import requests
+
 from graphql.execution import ExecutionResult
 from graphql.language.printer import print_ast
 
