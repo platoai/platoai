@@ -75,7 +75,7 @@ setuptools.setup(
     url='https://github.com/voxjar/voxjar',
     install_requires=['requests', 'gql'],
     extras_require={'docs': ['sphinx'],
-                    'dev': ['wheel', 'twine']},
+                    'dev': ['wheel', 'twine', 'requests']},
     python_requires='>=2.7',
     packages=setuptools.find_packages(exclude=['docs', 'tests*']),
     cmdclass={
