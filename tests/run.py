@@ -5,6 +5,7 @@ import os
 import sys
 from io import BytesIO
 from pprint import pprint
+from uuid import uuid4
 
 import requests
 
@@ -12,7 +13,7 @@ import voxjar
 
 if __name__ == "__main__":
     metadata = {
-        "identifier": "test_call_identifier",
+        "identifier": "test_{}".format(uuid4()),
         "timestamp": datetime.datetime.now(),
         "type": {
             "identifier": "test_call_type_identifier",
