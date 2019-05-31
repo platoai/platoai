@@ -272,3 +272,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/python,linux,windows,macos,jetbrains+all
+
+config.*
