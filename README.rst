@@ -12,7 +12,7 @@ installation
 
 .. code:: bash
 
-  $ pip install voxjar
+  $ pip3 install voxjar
 
 documentation
 -------------
